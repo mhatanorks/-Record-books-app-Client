@@ -49,6 +49,7 @@ export const authOptions: NextAuthOptions = {
           return true;
         } catch (error) {
           console.log("失敗");
+          console.log(error);
           return false;
         }
       }

@@ -12,7 +12,7 @@ const Header = async ({ session }: { session: any }) => {
         {session && (
           <>
             <p
-              className="md:pt-4 font-bold md:text-xl text-base pt-5 text-green-50"
+              className="md:pt-4 font-bold md:text-xl text-base pt-5 text-green-50 hidden md:block"
               test-data="username"
             >
               Hello! {session?.user.name} !

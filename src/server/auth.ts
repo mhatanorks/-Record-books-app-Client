@@ -35,26 +35,26 @@ declare module "next-auth" {
  */
 export const authOptions: NextAuthOptions = {
   callbacks: {
-    // async signIn({ account, user }) {
-    //   if (account) {
-    //     const { access_token, id_token } = account;
-    //     try {
-    //       const res = await axios
-    //         .post(
-    //           `${process.env.NEXT_PUBLIC_SERVER_URL}/api/social/login/google/`,
-    //           { access_token: access_token, id_token: id_token }
-    //         )
-    //         .then((res) => (account.access_token = res.data.access_token));
-    //       console.log(res);
-    //       return true;
-    //     } catch (error) {
-    //       console.log("失敗");
-    //       console.log(error);
-    //       return false;
-    //     }
-    //   }
-    //   return false;
-    // },
+    async signIn({ account, user }) {
+      if (account) {
+        const { access_token, id_token } = account;
+        try {
+          const res = await axios
+            .post(
+              `${process.env.NEXT_PUBLIC_SERVER_URL}/api/social/login/google/`,
+              { access_token: access_token, id_token: id_token }
+            )
+            .then((res) => (account.access_token = res.data.access_token));
+          console.log(res);
+          return true;
+        } catch (error) {
+          console.log("失敗");
+          console.log(error);
+          return false;
+        }
+      }
+      return false;
+    },
 
     async jwt({ token, account }) {
       // console.log(token)

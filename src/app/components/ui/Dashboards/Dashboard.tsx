@@ -9,26 +9,24 @@ const Dashboard = ({ session }: { session: any }) => {
   const email = session?.user.email;
   const [status, setStatus] = useState("Record");
   const [deletionCount, setDeletionCount] = useState(0);
-  const [records, setRecords] = useState({
+  const [records, setRecords] = useState<any>({
     favoriteRecords: [],
     readRecords: [],
   });
-  const [isPending, startTransition] = useTransition();
+  console.log(records);
 
   useEffect(() => {
-    startTransition(() => {
-      async function fetchAndSetRecords() {
-        const fetchedRecords = await fetchRecordsBooks(email);
-        const favoriteRecords = fetchedRecords.filter(
-          (record: { status: string }) => record.status === "favorite"
-        );
-        const readRecords = fetchedRecords.filter(
-          (record: { status: string }) => record.status === "record"
-        );
-        setRecords({ favoriteRecords, readRecords });
-      }
-      fetchAndSetRecords();
-    });
+    async function fetchAndSetRecords() {
+      const fetchedRecords = await fetchRecordsBooks(email);
+      const favoriteRecords = fetchedRecords.filter(
+        (record: { status: string }) => record.status === "favorite"
+      );
+      const readRecords = fetchedRecords.filter(
+        (record: { status: string }) => record.status === "record"
+      );
+      setRecords({ favoriteRecords, readRecords });
+    }
+    fetchAndSetRecords();
   }, [email, deletionCount]);
 
   const handleDelete = () => {
@@ -42,7 +40,7 @@ const Dashboard = ({ session }: { session: any }) => {
         <NavButton status={status} setStatus={setStatus} nav="Record" />
         <NavButton status={status} setStatus={setStatus} nav="Favorite" />
       </nav>
-      {isPending && (
+      {records?.favoriteRecords.length == 0 && (
         <section className="max-w-4xl m-auto">
           <Skeletons />
         </section>

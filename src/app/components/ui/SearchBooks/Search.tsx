@@ -34,6 +34,7 @@ const Search = React.memo(() => {
     return searchParams || "";
   }, [searchParams]);
 
+
   useEffect(() => {
     // キーイベントを処理するハンドラー関数を定義します
     function handleKeyDown(e: {
@@ -56,6 +57,7 @@ const Search = React.memo(() => {
     };
   }, []);
 
+  
   return (
     <div className=" text-center my-5">
       <label htmlFor="search" className="sr-only">

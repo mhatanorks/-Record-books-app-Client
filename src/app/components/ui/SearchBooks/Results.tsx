@@ -12,7 +12,7 @@ const Results = async ({
   currentPage: number;
 }) => {
   const searchResults = await fetchGoogleBooks(query, currentPage);
-  console.log(searchResults);
+  // console.log(searchResults);
 
   return (
     <>

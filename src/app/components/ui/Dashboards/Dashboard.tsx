@@ -40,11 +40,11 @@ const Dashboard = ({ session }: { session: any }) => {
         <NavButton status={status} setStatus={setStatus} nav="Record" />
         <NavButton status={status} setStatus={setStatus} nav="Favorite" />
       </nav>
-      {records?.favoriteRecords.length == 0 && (
+      {/* {records?.favoriteRecords.length == 0 && (
         <section className="max-w-4xl m-auto">
           <Skeletons />
         </section>
-      )}
+      )} */}
       {status === "Record" ? (
         <RecordsList
           records={records.readRecords}

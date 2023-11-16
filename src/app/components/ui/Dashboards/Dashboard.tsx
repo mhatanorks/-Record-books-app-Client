@@ -1,6 +1,5 @@
 "use client";
-import React, { useEffect, useState, useTransition } from "react";
-import Skeletons from "../SearchBooks/Skeleton";
+import React, { useEffect, useState  } from "react";
 import RecordsList from "./RecordsList";
 import NavButton from "./NavButton";
 import { fetchRecordsBooks } from "@/app/lib/data";
@@ -13,7 +12,6 @@ const Dashboard = ({ session }: { session: any }) => {
     favoriteRecords: [],
     readRecords: [],
   });
-  console.log(records);
 
   useEffect(() => {
     async function fetchAndSetRecords() {
@@ -40,11 +38,6 @@ const Dashboard = ({ session }: { session: any }) => {
         <NavButton status={status} setStatus={setStatus} nav="Record" />
         <NavButton status={status} setStatus={setStatus} nav="Favorite" />
       </nav>
-      {/* {records?.favoriteRecords.length == 0 && (
-        <section className="max-w-4xl m-auto">
-          <Skeletons />
-        </section>
-      )} */}
       {status === "Record" ? (
         <RecordsList
           records={records.readRecords}

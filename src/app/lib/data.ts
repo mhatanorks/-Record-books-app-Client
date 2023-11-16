@@ -2,7 +2,6 @@
 import axios from "axios";
 import { useMemo } from "react";
 
-
 export async function fetchGoogleBooks(query: string, currentPage: number) {
   // useMemoを使用して同じクエリに対する再検索を避ける
   return useMemo(async () => {
@@ -48,7 +47,7 @@ export async function createRecord(
         headers: {
           "Content-Type": "application/json",
         },
-        withCredentials: true  // クッキーをリクエストに含める
+        withCredentials: true, // クッキーをリクエストに含める
       }
     );
     console.log(response.data);
@@ -62,11 +61,12 @@ export async function createRecord(
 export async function fetchRecordsBooks(email: any) {
   try {
     const response = await axios.get(
-      `${process.env.NEXT_PUBLIC_SERVER_URL}/api/list/?email=${email}` ,{
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/api/list/?email=${email}`,
+      {
         headers: {
           "Content-Type": "application/json",
         },
-        withCredentials: true  // クッキーをリクエストに含める
+        withCredentials: true, // クッキーをリクエストに含める
       }
     );
     return response.data;
